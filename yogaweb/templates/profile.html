@@ -1,0 +1,390 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<!-- Mirrored from preview.colorlib.com/theme/startup2/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 05:12:44 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Yoga Class</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+<link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+<link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+<link rel="stylesheet" href="{% static 'css/gijgo.css' %}">
+<link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/slick.css' %}">
+<link rel="stylesheet" href="{% static 'css/slicknav.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{%static 'styles.css' %}">
+</head>
+<body>
+<!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+<header>
+<div class="header-area ">
+<div id="sticky-header" class="main-header-area">
+<div class="container-fluid p-0">
+<div class="row align-items-center no-gutters">
+<div class="col-xl-2 col-lg-2">
+<div class="logo-img">
+</div>
+</div>
+<div class="col-xl-8 col-lg-8">
+<div class="main-menu  d-none d-lg-block text-center">
+<nav>
+<ul id="navigation">
+<li><a href="/home/">home</a></li>
+<li><a href="/advertisement/">Advertisement</a></li>
+<li><a href="/instructor/">Be a instructor</a></li>
+{% if user.is_authenticated %}
+<li><a href="/profile/">Profile</a></li>
+<li><a href="/contact/">Contact</a></li>
+<li><a href="/logout/">logout</a></li>
+{% else %}
+<li><a href="/signup/">Signup</a></li>
+<li><a href="/login/">login</a></li>
+<li><a href="/contact/">Contact</a></li>
+{% endif %}
+</ul>
+</nav>
+</div>
+</div>
+<div class="col-lg-2 d-none d-lg-block">
+<div class="log_chat_area d-flex align-items-end">
+{% comment %} <a href="/logout/" target="_black" class="say_hi">Say Hello</a> {% endcomment %}
+</div>
+</div>
+<div class="col-12">
+<div class="mobile_menu d-block d-lg-none"></div>
+</div>
+</div>
+ </div>
+</div>
+</div>
+</header>
+
+
+
+<div class="bradcam_area breadcam_bg_3">
+<div class="container">
+<div class="row">
+<div class="col-xl-12">
+<div class="bradcam_text"><br><br><br><br><br>
+{% comment %} <h3>Yoga Class App</h3> {% endcomment %}
+</div>
+</div>
+</div>
+</div>
+</div>
+{% if user.is_authenticated %}
+<form action="/profile/" method="POST" style="border:1px solid #ccc">
+    {% csrf_token %}
+    <div class="container">
+    <h1>{{user.email}}</h1>
+    <p>Please Select from following options.</p>
+	<label for="id">Choose relavant option:</label>
+<select id="id" name="id">
+  <option value="0">- - -</option>
+  <option value="1">show profile</option>
+  <option value="2">edit profile</option>
+  <option value="3">change password</option>
+  <option value="4">View Previous transactions</option>
+  <option value="5">Pay Fees</option>
+</select>
+<div class="clearfix">
+      <button type="reset" class="cancelbtn" id="">Reset</button>
+      <button type="submit" class="signupbtn">Enter</button>
+    </div>
+	</div>
+</form>
+{% if id == 0 %}
+<hr>
+<center><h1>select option to get information....<h1><center>
+<br/>
+<hr>
+{% endif %}
+
+{% if id == 1 %}
+<hr>
+<center><h1>Your profile<h1><center>
+<hr>
+<hr class="new2"><h3>First Name:- {{user.first_name}}<h3></br>
+<hr class="new2"><h3>Last Name:- {{user.last_name}}<h3></br>
+<hr class="new2"><h3>Username:- {{user.username}}<h3></br>
+<hr class="new2"><h3>User Official Email:-{{user.email}}<h3></br>
+<hr class="new2"><h3>User Personal(private) Email:-{{user.userprofile.pemail}}<h3></br>
+<hr class="new2"><h3>Usern Phone Number:-{{user.userprofile.phoneno}}<h3></br>
+<hr class="new2"><h3>User Address:-{{user.userprofile.address}}<h3></br>
+<hr class="new2"><h3>User Health Info:-{{user.userprofile.healthifo}}<h3></br>
+<hr class="new2"><h3>Birth Date:-{{user.userprofile.bithdate}}<h3></br>
+<hr class="new2"><h3>Age:-{{user.userprofile.age}}<h3></br>
+<hr class="new2"><h3>Shift:-{{user.userprofile.shift}}<h3></br>
+<hr class="new2"><h3>Fess paid:-{{user.userprofile.feespaid}}<h3></br>
+<hr class="new2"><h3>Last Fees paid date:-{{user.userprofile.lastfeesdate}}<h3></br>
+<hr class="new2"><h3>membership validity date:-{{user.userprofile.validitydate}}<h3></br>
+<br/>
+<hr>
+{% endif %}
+
+{% if id == 2 %}
+<br><br>
+	<center><h1>Edit Profile<h1><center>
+    <p>Please fill this form to edit an account.</p>
+<form action="/editprofile/" method="POST" style="border:1px solid #ccc">
+    {% csrf_token %}
+    <div class="contain">
+	<div class="form-control">
+    </br></br>
+    <label for="fname">First Name:-</label>
+    <input type="text"  name="fname" value="{{user.first_name}}" required >
+
+	<label for="lname">Last Name:-</label>
+    <input type="text"  name="lname" value="{{user.last_name}}" required>
+
+    <label for="Username">Username:-</label>
+    <input type="text"  name="username" value="{{user.username}}" required readonly> 
+	
+	<label for="email">Official Email:-</label>
+    <input type="email" email="email" value="{{user.email}}" required  readonly>
+
+    <label for="phone">Phone No.:-</label>
+    <input type="tel" id="phoneno" name="phoneno" value="{{user.userprofile.phoneno}}" required pattern="[0-9]{10}">   
+
+	<label for="email">personal Email</label>
+    <input type="email" id="pemail" name="pemail" value="{{user.userprofile.pemail}}" required>
+	
+	<label for="address">User Address:-</label>
+    <input type="text" id="address" name="address" value="{{user.userprofile.address}}" required >
+
+	<label for="description">Health info:-</label>
+  <input type="text" id="des" name="health" value="{{user.userprofile.healthinfo}}" required >
+    	<label for="year">Birthdate:-</label>
+	<input type="text"  id="college" name="birthdate" value="{{user.userprofile.bithdate}}" required readonly>
+    
+	<label for="batch">Age:-</label>
+    <input type="text"  id="degree" name="age" value="{{user.userprofile.age}}" required readonly>
+    <label for="batch">Shift:-</label>
+    <input type="text"  id="year" name="year" value="{{user.userprofile.shift}}" required readonly>
+    <label for="batch">feespaid:-</label>
+    <input type="text"  id="year" name="year" value="{{user.userprofile.feespaid}}" required readonly>
+    <label for="batch">Last Fees paid date:-</label>
+    <input type="text"  id="year" name="lastfeesdate" value="{{user.userprofile.lastfeesdate}}" required readonly>
+    <label for="batch">membership validity date:-</label>
+    <input type="text"  id="year" name="lastfeesdate" value="{{user.userprofile.validitydate}}" required readonly>
+	<br/>
+
+	{% for message in messages %}
+	<h6>{{message}}</h6>
+	{% endfor %}
+
+  <br/>
+<div class="clearfix">
+      <button type="reset" class="cancelbtn" id="">Reset</button>
+      <button type="submit" class="signupbtn">Save</button>
+    </div>
+</form>
+	
+<hr>
+{% endif %}
+{% if id == 3%}
+<hr>
+</br>
+<center><h1>Change Password</h1><center>
+<p>Please fill this form to change password</p>
+
+<h6>Your password can’t be too similar to your other personal information.</h6>
+<h6>Your password must contain at least 8 characters.</h6>
+<h6>Your password can’t be a commonly used password.</h6>
+<h6>Your password can’t be entirely numeric.</h6>
+</br>
+
+<form action="/changepassword/" method="POST"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="contain">
+<div class="form-control">
+<br>
+   <label for="fname">Old Password:-</label>
+    <input type="password" id="old"  name="old" required >
+
+	<label for="lname">Enter New Password:-</label>
+    <input type="password" id="new1"  name="new1" required>
+
+    <label for="uid">Confirm New Password:-</label>
+    <input type="password" id="new2" name="new2" required >
+<br/>
+{% for message in messages %}
+	<h6>{{message}}</h6>
+	{% endfor %}
+
+<div class="clearfix">
+      <button type="reset" class="cancelbtn" id="">Reset</button>
+      <button type="submit" class="signupbtn">Change Password</button>
+    </div>
+</form>
+<hr>
+{% endif %}
+{% if id == 4 %}
+<hr>
+<center><h1>Your previous transactions<h1><center>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Date</th>
+      <th scope="col">Time</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Batch</th>
+      <th scope="col">Validity</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for n in n %}
+    <tr>
+      <td>{{n.name}}</td>
+      <td>{{n.date}}</td>
+      <td>{{n.time}}</td>
+      <td>{{n.amount}}</td>
+      <td>{{n.batchselected}}</td>
+      <td>{{n.validitydate}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<hr>
+{% endif %}
+{% if id == 5 %}
+<form action="/completepayment/" method="POST"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="contain">
+<div class="form-control">
+<br>
+   <label for="fname">Amount:-</label>
+    <input type="text" id="amount" name="amount" value="500" required readonly>
+
+	<label for="id">choose Batch timings (6-7AM, 7-8AM, 8-9AM, 5-6PM) :</label>
+<select id="id" name="batch">
+  <option value="6-7AM">6 - 7 AM</option>
+  <option value="7-8AM">7 - 8 AM</option>
+  <option value="8-9AM">8 - 9 AM</option>
+  <option value="5-6PM">5 - 6 PM</option>
+</select>
+<br/>
+{% for message in messages %}
+	<h6>{{message}}</h6>
+	{% endfor %}
+
+<div class="clearfix">
+      <button type="reset" class="cancelbtn" id="">Reset</button>
+      <button type="submit" class="signupbtn">Pay Fees</button>
+    </div>
+</form>
+{% endif %}
+{% else %}
+<h1>Login First</h1>
+{% endif %}
+<footer class="footer">
+<div class="footer_top">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-lg-2 col-md-3">
+<div class="footer_logo wow fadeInRight" data-wow-duration="1s" data-wow-delay=".3s">
+
+</div>
+</div>
+<div class="col-xl-7 col-lg-7 col-md-9">
+<div class="menu_links">
+<ul>
+<li><a class="wow fadeInDown" data-wow-duration="1s" data-wow-delay=".2s" href="/home/">| home |</a class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s"></li>
+<li><a class="wow fadeInDown" data-wow-duration="1s" data-wow-delay=".4s" href="/advertisement/">| Advertisement |</a></li>
+{% if user.is_authenticated %}
+<li><a class="wow fadeInDown" data-wow-duration="1s" data-wow-delay="1.1s" href="/profile/">| Profile |</a></li>
+{% else %}
+<li><a class="wow fadeInDown" data-wow-duration="1s" data-wow-delay=".8s" href="/signup/">| Signup |</a></li>
+<li><a class="wow fadeInDown" data-wow-duration="1s" data-wow-delay="1s" href="/login/">| Login |</a></li>
+{% endif %}
+<li><a class="wow fadeInDown" data-wow-duration="1s" data-wow-delay="1.1s" href="/instructor/">| Be A Instructor |</a></li>
+<li><a class="wow fadeInDown" data-wow-duration="1s" data-wow-delay="1.1s" href="/contact/">| Contact |</a></li>
+{% if user.is_authenticated%}
+<li><a class="wow fadeInDown" data-wow-duration="1s" data-wow-delay="1.1s" href="/logout/">| Logout |</a></li>
+{% endif %}
+</ul>
+</div>
+</div>
+<div class="col-lg-3 col-md-12">
+<div class="socail_links">
+<ul>
+<li><a class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s" href="https://www.facebook.com/nikhil.dewoolkar.9/"> <i class="fa fa-facebook"></i> </a></li>
+<li><a class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s" href="https://twitter.com/dewoolkarnikhil"> <i class="fa fa-twitter"></i> </a></li>
+<li><a class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s" href="https://www.instagram.com/nikhil_dewoolkar/"> <i class="fa fa-instagram"></i> </a></li>
+<li><a class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s" href="mailto:dewoolkarnikhil29@gmail.com"> <i class="fa fa-google-plus"></i> </a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="copy-right_text">
+<div class="container">
+<div class="footer_border"></div>
+<div class="row">
+<div class="col-xl-12">
+<p class="copy_right text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.3s">
+Yoga Class website Assignment for flexmoney internship selection. All rights reserved | Developed by <a href="https://www.linkedin.com/in/nikhil-dewoolkar-2b738b1b1/" target="_blank">Nikhil Dewoolkar</a>
+
+</p> 
+</div>
+</div>
+</div>
+</div> 
+</div>
+</footer>
+
+
+<script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+<script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="js/isotope.pkgd.min.js"></script>
+<script src="{% static 'js/ajax-form.js' %}"></script>
+<script src="{% static 'js/waypoints.min.js' %}"></script>
+<script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'js/scrollIt.js' %}"></script>
+<script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static 'js/nice-select.min.js' %}"></script>
+<script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<script src="{% static 'js/gijgo.min.js' %"></script>
+
+<script src="{% static 'js/contact.js' %}"></script>
+<script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+<script src="{% static 'js/jquery.form.js' %}"></script>
+<script src="{% static 'js/jquery.validate.min.js' %}"></script>
+<script src="{% static 'js/mail-script.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+<script async src="{% static 'https://www.googletagmanager.com/gtag/js?id=UA-23581568-13' %}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+</body>
+
+</html>
